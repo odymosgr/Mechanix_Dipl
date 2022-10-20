@@ -1,2 +1,4 @@
-msg = "Hello World"
-print(msg)
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800,400))
