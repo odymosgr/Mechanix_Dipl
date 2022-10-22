@@ -1,5 +1,5 @@
 import pygame
-from .pygameconstants import BLACK, ROWS, SQUARE_SIZE, FPS, WIN
+from .pygameconstants import BLACK, ROWS, SQUARE_SIZE, FPS, WIN, RED
 
 class Board:
     def __init__(self):
