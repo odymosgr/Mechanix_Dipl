@@ -23,6 +23,12 @@ class Board:
             for col in range(ROWS - row - 1):
                 pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col *SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
+def draw_window(BOARD):
+    BOARD.draw_squares(WIN)
+    pygame.display.update()
+
+
+
 def main():
     BOARD = Board()
     CLOCK = pygame.time.Clock()
@@ -33,7 +39,6 @@ def main():
         for event in pygame.event.get():
             if event.type == event.QUIT:
                 run = False
-
-        BOARD.draw_squares(WIN)
+        draw_window(BOARD)
 
 
