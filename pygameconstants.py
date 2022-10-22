@@ -1,6 +1,10 @@
 import pygame
 
 WIDTH, HEIGHT = 600, 600
+ROWS, COLS = 8, 8
+SQUARE_SIZE = WIDTH//COLS
+FPS = 60
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 #RGB Colors
 RED = (255, 0, 0)
