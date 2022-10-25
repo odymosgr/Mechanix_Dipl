@@ -26,7 +26,7 @@ def gear_exists_at(pos, board):
 
 
 # Returns a dictionary which maps 
-# gear positions with connections (represented by tuples)
+# gear positions (represented by tuples)
 # to list of connected gear positions 
 #
 def board_to_adj_list(board):
@@ -64,7 +64,7 @@ def board_to_adj_list(board):
       y=j-1
       if gear_exists_at((x,y), board): temp.append((x,y))
       
-      if temp: adj_list[(i,j)] = temp
+      adj_list[(i,j)] = temp
   return adj_list
 
 
@@ -168,18 +168,43 @@ def turn_gear_clockwise(board, pos):
 
   return board_rotations
 
-  
+
+# Take input a board, player_to_play, move
+# Check if the move is valid
+# (not if it results in illigal OR winning position)
+def move_is_valid(board, player_to_play, move):
+  if board[move[3], move[4]] != 0 : return False
+  if move[0] == 'T' and board[move[1],move[2]] != player_to_play: return False
+  return True
+
+
+# Take input a board, player_to_play, a valid move
+# change board to resulting position (maybe illigal, or winning)
+#
+def make_a_move(board, player_to_play, move):
+  if move[0] == 'T': board[move[1], move[2]] = 0
+  board[move[3], move[4]] = player_to_play
+
+
+########
+# 'testing'
 
 board = initialize_board()
 board[1, 0] = 1
-board[1, 1] = 1
+board[1, 1] = 2
 board[2, 1] = 2
 board[0, 2] = 2
 #board[0, 1] = 2
 print(board)
-#print(board_to_adj_list(board))
+
+print(board_to_adj_list(board))
 rotations = turn_gear_clockwise(board, (0,0))
 print(rotations)
+
+move = get_move_from_user(1)
+if move_is_valid(board, 1, move): make_a_move(board, 1, move)
+else: print("invalid move!")
+print(board)
 
 
 
