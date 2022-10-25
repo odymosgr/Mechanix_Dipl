@@ -22,7 +22,7 @@ class Board:
 
             k = k - 1
 
-            for col in range(0, row + 1):
+            for col in range(k + 1):
                 pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
     # def draw_squares(self, win):
