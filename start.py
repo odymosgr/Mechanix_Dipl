@@ -175,7 +175,7 @@ board[1, 0] = 1
 board[1, 1] = 1
 board[2, 1] = 2
 board[0, 2] = 2
-board[0, 1] = 2
+#board[0, 1] = 2
 print(board)
 #print(board_to_adj_list(board))
 rotations = turn_gear_clockwise(board, (0,0))
