@@ -9,17 +9,21 @@ class Board:
 
     def draw_squares(self, win):
         win.fill(BLACK)
-        pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE, SQUARE_SIZE))
-        for square in range(3):
-            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50, SQUARE_SIZE, SQUARE_SIZE))
-        for square in range(5):
-            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50, SQUARE_SIZE, SQUARE_SIZE))
-        for square in range(7):
-            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50, SQUARE_SIZE, SQUARE_SIZE))
-        for square in range(9):
-            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50, SQUARE_SIZE, SQUARE_SIZE))
-        for square in range(11):
-            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50, SQUARE_SIZE, SQUARE_SIZE))
+        # pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE, SQUARE_SIZE))
+        # for square in range(3):
+        #     pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50, SQUARE_SIZE, SQUARE_SIZE))
+        # for square in range(5):
+        #     pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50, SQUARE_SIZE, SQUARE_SIZE))
+        # for square in range(7):
+        #     pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50, SQUARE_SIZE, SQUARE_SIZE))
+        # for square in range(9):
+        #     pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50, SQUARE_SIZE, SQUARE_SIZE))
+        # for square in range(11):
+        #     pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50, SQUARE_SIZE, SQUARE_SIZE))
+
+        for i in range(6):
+            for r in range(1, 13, 2):
+                pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (r-i)*SQUARE_SIZE, SQUARE_SIZE*i + 50, SQUARE_SIZE, SQUARE_SIZE))
 
 
     # def draw_squares(self, win):
@@ -27,28 +31,4 @@ class Board:
     #     for row in range(ROWS):
     #         for col in range(row % 2, ROWS, 2):
     #             pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-
-    # def draw_squares(self, win):
-    #     win.fill(BLACK)
-    #     k = ROWS - 1
-    #     for row in range(ROWS):
-    #         for col in range(k):
-    #             pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-    #
-    #         k = k - 1
-    #
-    #         for col in range(k):
-    #             pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-
-    # def draw_squares(self, win):
-    #     win.fill(BLACK)
-    #     k = ROWS - 1
-    #     for row in range(ROWS):
-    #         for col in range(COLS):
-    #             if (k//2) < COLS//2 - 1:
-    #                 pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-    #             elif k//2 == COLS//2 - 1:
-    #                 pygame.draw.rect(win, WHITE, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-    #             else:
-    #                 pygame.draw.rect(win, RED, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
