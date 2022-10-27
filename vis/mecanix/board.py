@@ -9,7 +9,9 @@ class Board:
 
     def draw_squares(self, win):
         win.fill(BLACK)
-        pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2, HEIGHT//2 - SQUARE_SIZE//2, SQUARE_SIZE, SQUARE_SIZE))
+        pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2,0, SQUARE_SIZE, SQUARE_SIZE))
+        for square in range(3):
+            pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - square, SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
     # def draw_squares(self, win):
     #     win.fill(BLACK)
