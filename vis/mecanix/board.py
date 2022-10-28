@@ -25,7 +25,7 @@ class Board:
         #     for r in range(1, 13, 2):
         #         pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (r-i)*SQUARE_SIZE, SQUARE_SIZE*i + 50, SQUARE_SIZE, SQUARE_SIZE))
 
-    def draw_gear_positions(self, win):
+    def draw_gear_mounts(self, win):
         pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE), SQUARE_SIZE//4)
         for square in range(3):
             pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50], SQUARE_SIZE//4)

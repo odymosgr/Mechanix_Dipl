@@ -23,7 +23,7 @@ def main():
                 pass
 
         board.draw_squares(WIN)
-        board.draw_gear_positions(WIN)
+        board.draw_gear_mounts(WIN)
         pygame.display.update()
 
 
