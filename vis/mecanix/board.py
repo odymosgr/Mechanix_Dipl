@@ -1,5 +1,5 @@
 import pygame
-from .constants import BLACK, MOUNT_SIZE, ROWS, COLS, RED, SQUARE_SIZE, WHITE, BLUE, WIDTH, HEIGHT, MOUNT_SIZE
+from .constants import *
 
 class Board:
     def __init__(self):
@@ -37,6 +37,9 @@ class Board:
             pygame.draw.circle(win, BLACK, (WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE+ 2*MOUNT_SIZE, SQUARE_SIZE*4+ 2*MOUNT_SIZE + 50), MOUNT_SIZE)
         for square in range(11):
             pygame.draw.circle(win, BLACK, (WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE+ 2*MOUNT_SIZE, SQUARE_SIZE*5+ 2*MOUNT_SIZE + 50), MOUNT_SIZE)
+
+    def create_board(self):
+        pass
 
 
 
