@@ -28,15 +28,15 @@ class Board:
     def draw_gear_positions(self, win):
         pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE), SQUARE_SIZE//4)
         for square in range(3):
-            pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50), SQUARE_SIZE//4)
+            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50], SQUARE_SIZE//4)
         for square in range(5):
-            pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50), SQUARE_SIZE//4)
+            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50], SQUARE_SIZE//4)
         for square in range(7):
-            pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50), SQUARE_SIZE//4)
+            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50], SQUARE_SIZE//4)
         for square in range(9):
-            pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50), SQUARE_SIZE//4)
+            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50], SQUARE_SIZE//4)
         for square in range(11):
-            pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50), SQUARE_SIZE//4)
+            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50], SQUARE_SIZE//4)
 
 
 
