@@ -1,5 +1,5 @@
 import pygame
-from .constants import BLACK, ROWS, COLS, RED, SQUARE_SIZE, WHITE, BLUE, WIDTH, HEIGHT
+from .constants import BLACK, MOUNT_SIZE, ROWS, COLS, RED, SQUARE_SIZE, WHITE, BLUE, WIDTH, HEIGHT, MOUNT_SIZE
 
 class Board:
     def __init__(self):
@@ -26,17 +26,17 @@ class Board:
         #         pygame.draw.rect(win, RED, (WIDTH//2 - SQUARE_SIZE//2 - (r-i)*SQUARE_SIZE, SQUARE_SIZE*i + 50, SQUARE_SIZE, SQUARE_SIZE))
 
     def draw_gear_mounts(self, win):
-        pygame.draw.circle(win, RED, (WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE), SQUARE_SIZE//4)
+        pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2, 50, SQUARE_SIZE], MOUNT_SIZE, 10)
         for square in range(3):
-            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50], SQUARE_SIZE//4)
+            pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2 - (square - 1)*SQUARE_SIZE, SQUARE_SIZE + 50], MOUNT_SIZE, 10)
         for square in range(5):
-            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50], SQUARE_SIZE//4)
+            pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2 - (square - 2)*SQUARE_SIZE, SQUARE_SIZE*2 + 50], MOUNT_SIZE, 10)
         for square in range(7):
-            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50], SQUARE_SIZE//4)
+            pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2 - (square - 3)*SQUARE_SIZE, SQUARE_SIZE*3 + 50], MOUNT_SIZE, 10)
         for square in range(9):
-            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50], SQUARE_SIZE//4)
+            pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2 - (square - 4)*SQUARE_SIZE, SQUARE_SIZE*4 + 50], MOUNT_SIZE, 10)
         for square in range(11):
-            pygame.draw.circle(win, RED, [WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50], SQUARE_SIZE//4)
+            pygame.draw.circle(win, BLACK, [WIDTH//2 - SQUARE_SIZE//2 - (square - 5)*SQUARE_SIZE, SQUARE_SIZE*5 + 50], MOUNT_SIZE, 10)
 
 
 
