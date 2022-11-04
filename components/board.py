@@ -50,10 +50,29 @@ class Board:
           connections.add((self.array[y][x], self.array[y-1][x+1]))
 
     self.graph = Graph(vertices, connections)
-
   
-        
-        
+  def print_spin_array(self):
+    spin_array = []
+    for y in range(len(self.array)):
+      spin_array.append([])
+      for x in range(len(self.array[y])):
+        if not self.array[y][x].is_occupied(): spin_array[y].append(0)
+        else : spin_array[y].append(self.array[y][x].occupied_by.get_rotation())
+    
+    for y in range(len(self.array)):
+      print(spin_array[self.size - y -1])
+
+  def print_board(self):
+    print_array = []
+    for y in range(len(self.array)):
+      print_array.append([])
+      for x in range(len(self.array[y])):
+        if not self.array[y][x].is_occupied(): print_array[y].append(0)
+        else : print_array[y].append(self.array[y][x].occupied_by.type)
+    
+    for y in range(len(self.array)):
+      print(print_array[self.size - y -1])
+
 
 
 

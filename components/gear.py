@@ -14,7 +14,15 @@ class Gear:
     else : print('Error: gear initialization with wrong type: ' + str(type))
     
     self.transportable = transportable
-    self.rotation_of_motion = 0
+    # rotation = {0,1,2,-1}
+    # meaning {not_moving, clockwise, c/clockwise, jammed}
+    self.rotation = 0
+
+  def set_rotation(self, rot):
+    self.rotation = rot
+
+  def get_rotation(self):
+    return self.rotation
 
   def is_transportable(self):
     return self.transportable
@@ -27,4 +35,4 @@ class Gear:
     print('- type = '+str(self.type))
     print('- color = '+str(self.color))
     print('- transportable = '+str(self.transportable))
-    print('- rotation_of_motion = '+str(self.rotation_of_motion))
+    print('- rotation = '+str(self.rotation))

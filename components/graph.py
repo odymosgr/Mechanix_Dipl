@@ -7,6 +7,9 @@ class Graph:
     for u,v in self.E:
       self.addedge(u,v)
 
+  def adj_dict(self):
+    return self._nbrs
+
   def nbrs(self, v): 
     return iter(self._nbrs[v])
 
@@ -35,6 +38,8 @@ class Graph:
     del self._nbrs[u]
 
 
+
+
 if __name__ == "__main__":
   g = Graph({1,2,3,4}, {(1,2), (2,3), (1,3), (2,4), (3,4)})
-  for i in g.nbrs(1): print(i)
+  for i in g.nbrs(2): print(i)
