@@ -1,4 +1,5 @@
 import pygame
+import math
 from .constants import BLACK, RED, TARGETGEAR, TRANSPARENT, WIDTH, SQUARE_SIZE, MOUNT_SIZE, ROWS, BLUEGEAR, TARGETGEAR, GREENGEAR
 from .gear import Gear
 
@@ -6,7 +7,6 @@ class Board(pygame.sprite.Sprite):
     def __init__(self):
         self.board = []
         self.gear_group = pygame.sprite.Group()
-        self.selected_gear = None
         self.green_left = self.blue_left = 12
 
     def __repr__(self):
@@ -43,12 +43,15 @@ class Board(pygame.sprite.Sprite):
                     if row == ROWS - 1:
                         if col == 0:
                             new_gear = Gear(row, col, 'blue', WIDTH//2 - SQUARE_SIZE//2 - (row - col)*SQUARE_SIZE + 2*MOUNT_SIZE + (SQUARE_SIZE//2)*row,  SQUARE_SIZE*row + 2*MOUNT_SIZE + 50, BLUEGEAR)
+                            new_gear.previous = new_gear.color
                             new_gear.make_fixed()
                         elif col == ROWS-1:
                             new_gear = Gear(row, col, 'green', WIDTH//2 - SQUARE_SIZE//2 - (row - col)*SQUARE_SIZE + 2*MOUNT_SIZE + (SQUARE_SIZE//2)*row,  SQUARE_SIZE*row + 2*MOUNT_SIZE + 50, GREENGEAR)
+                            new_gear.previous = new_gear.color
                             new_gear.make_fixed()
                 else:
                     new_gear = Gear(row, col, 'target', WIDTH//2 - SQUARE_SIZE//2 - (row - col)*SQUARE_SIZE + 2*MOUNT_SIZE,  SQUARE_SIZE*row + 2*MOUNT_SIZE + 50, TARGETGEAR)
+                    new_gear.previous = new_gear.color
                     new_gear.make_fixed()
                 self.board[row].append(new_gear)
                 self.gear_group.add(new_gear)

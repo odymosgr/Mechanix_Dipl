@@ -1,4 +1,4 @@
-from .constants import SQUARE_SIZE, RED, TRANSPARENT, WHITE, BLUEGEAR, GREENGEAR, TARGETGEAR
+from .constants import SQUARE_SIZE, TRANSPARENT, BLUEGEAR, GREENGEAR
 import pygame
 
 class Gear(pygame.sprite.Sprite):
@@ -11,6 +11,8 @@ class Gear(pygame.sprite.Sprite):
         self.row = row
         self.col = col
         self.color = color
+        self.previous = 'transparent'
+        self.occupied = False
         self.jammed = False
         self.fixed = False
         self.x = x
@@ -36,26 +38,38 @@ class Gear(pygame.sprite.Sprite):
             self.rect = self.image.get_rect()
             self.rect.center = (self.x, self.y)
             self.make_jammed()
+            self.make_occupied()
         elif self.color == 'green':
             self.image = GREENGEAR
             self.image = pygame.transform.scale(self.image, (SQUARE_SIZE, SQUARE_SIZE))
             self.rect = self.image.get_rect()
             self.rect.center = (self.x, self.y)
+            self.make_occupied()
         elif self.color == 'blue':
             self.image = BLUEGEAR
             self.image = pygame.transform.scale(self.image, (SQUARE_SIZE, SQUARE_SIZE))
             self.rect = self.image.get_rect()
             self.rect.center = (self.x, self.y)
+            self.make_occupied()
 
     def set_pos(self, x, y):
         self.x = x
         self.y = y
 
     def make_jammed(self):
-        self.jammed = True
+        if self.jammed:
+            self.jammed = True
+        else:
+            self.jammed = False
 
     def make_fixed(self):
-        self.fixed = True
+            self.fixed = True
+
+    def make_occupied(self):
+        if self.occupied:
+            self.occupied = False
+        else:
+            self.occupied = True
 
     def draw(self, win):
         # pygame.draw.rect(win, RED, (self.x, self.y, SQUARE_SIZE//4, SQUARE_SIZE//4))
