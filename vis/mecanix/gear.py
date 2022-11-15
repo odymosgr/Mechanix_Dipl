@@ -1,4 +1,4 @@
-from .constants import SQUARE_SIZE, RED, TRANSPARENT, WHITE, BLUEGEAR, GREENGEAR, TARGETGEAR
+from .constants import SQUARE_SIZE, TRANSPARENT, BLUEGEAR, GREENGEAR
 import pygame
 
 class Gear(pygame.sprite.Sprite):
@@ -11,39 +11,70 @@ class Gear(pygame.sprite.Sprite):
         self.row = row
         self.col = col
         self.color = color
+        self.previous = 'transparent'
+        self.occupied = False
         self.jammed = False
+        self.fixed = False
         self.x = x
         self.y = y
+
+    def __repr__(self):
+        out = ''
+        if self.jammed:
+            out += 'Jammed!'
+        else:
+            out += 'Not Jammed!'
+        if self.fixed:
+            out += 'and Fixed!'
+        else:
+            out += 'and Not Fixed!'
+        return out
 
     def set_color(self, color):
         self.color = color
         if self.color == 'transparent':
-            pass
+            self.image = TRANSPARENT
+            self.image = pygame.transform.scale(self.image, (SQUARE_SIZE, SQUARE_SIZE))
+            self.rect = self.image.get_rect()
+            self.rect.center = (self.x, self.y)
+            self.make_jammed()
+            self.make_occupied()
         elif self.color == 'green':
             self.image = GREENGEAR
-        else:
+            self.image = pygame.transform.scale(self.image, (SQUARE_SIZE, SQUARE_SIZE))
+            self.rect = self.image.get_rect()
+            self.rect.center = (self.x, self.y)
+            self.make_occupied()
+        elif self.color == 'blue':
             self.image = BLUEGEAR
-
+            self.image = pygame.transform.scale(self.image, (SQUARE_SIZE, SQUARE_SIZE))
+            self.rect = self.image.get_rect()
+            self.rect.center = (self.x, self.y)
+            self.make_occupied()
 
     def set_pos(self, x, y):
         self.x = x
         self.y = y
 
-    def calc_pos(self):
-        # self.x = SQUARE_SIZE*self.col + SQUARE_SIZE//2
-        # self.y = SQUARE_SIZE*self.row + SQUARE_SIZE//2
-        pass
-
     def make_jammed(self):
-        self.jammed = True
+        if self.jammed:
+            self.jammed = True
+        else:
+            self.jammed = False
+
+    def make_fixed(self):
+            self.fixed = True
+
+    def make_occupied(self):
+        if self.occupied:
+            self.occupied = False
+        else:
+            self.occupied = True
 
     def draw(self, win):
-        pygame.draw.rect(win, RED, (self.x, self.y, SQUARE_SIZE//4, SQUARE_SIZE//4))
-        if not self.jammed:
-            pass
+        # pygame.draw.rect(win, RED, (self.x, self.y, SQUARE_SIZE//4, SQUARE_SIZE//4))
+        win.blit(self.image, (self.x, self.y))
+        # if not self.jammed:
+        #     pass
 
-    def __repr__(self):
-        if self.jammed:
-            return 'Jammed!'
-        else:
-            return 'Not Jammed!'
+
