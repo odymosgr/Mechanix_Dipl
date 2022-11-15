@@ -37,6 +37,21 @@ class Graph:
       self.removeedge(u,v)
     del self._nbrs[u]
 
+  def is_bipartite(self):
+    set1 = set()
+    set2 = set()
+
+    for v in self._nbrs:
+      if v not in set2:
+        set1.add(v)
+        for nbr in self._nbrs[v]:
+          if nbr in set1: return False
+          set2.add(nbr)
+      else:
+        for nbr in self._nbrs[v]:
+          if nbr in set2: return False
+          set1.add(nbr)
+    return True
 
 
 

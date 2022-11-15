@@ -53,20 +53,6 @@ def board_to_chain_list (board):
 
   return chain_list
 
-def board_to_player_subgraph (board, player):
-  adj_dict = board.graph.adj_dict()
-  pos_list = list(adj_dict.keys())
-  gear_list = [i for i in pos_list if i.is_occupied() and i.occupied_by.type == player]
-
-  new_edges = []
-  for i in gear_list:
-    adj_vertices = adj_dict.get(i)
-    adj_gears = [i for i in adj_vertices if i.is_occupied() and i.occupied_by.type == player]
-    v_edges = [(i, t2) for t2 in adj_gears]
-    new_edges = new_edges + v_edges
-
-  return Graph(gear_list, new_edges)
-
 def turn_gear_on_pos (board, pos):
   if not pos.is_occupied(): return
 
@@ -99,51 +85,6 @@ def board_stop_gears(board):
   for p in pos_list:
     if p.is_occupied(): p.occupied_by.set_rotation(0)
 
-def is_graph_bipartite(g):
-  adjdict = g.adj_dict()
-  vertices = list(adjdict.keys())
-
-  set1 = set()
-  set2 = set()
-
-  for v in vertices:
-    if v not in set2:
-      set1.add(v)
-      for nbr in adjdict[v]:
-        if nbr in set1: return False
-        set2.add(nbr)
-    else:
-      for nbr in adjdict[v]:
-        if nbr in set2: return False
-        set1.add(nbr)
-  return True
-
-def is_board_illigal(board):
-  subg1 = board_to_player_subgraph(board, 1)
-  subg2 = board_to_player_subgraph(board, 2)
-  bsize = board.size
-
-  p01 = board.array[0][1]
-  p10 = board.array[1][0]
-  p0s = board.array[0][bsize-2]
-  p1s = board.array[1][bsize-2]
-  ps0 = board.array[bsize-2][0]
-  ps1 = board.array[bsize-2][1]
-
-  if p01.is_occupied() and p10.is_occupied() and p01.occupied_by.type == p10.occupied_by.type: 
-    return True
-  if p0s.is_occupied() and p1s.is_occupied() and p0s.occupied_by.type == p1s.occupied_by.type: 
-    return True
-  if ps0.is_occupied() and ps1.is_occupied() and ps0.occupied_by.type == ps1.occupied_by.type: 
-    return True
-
-  if not is_graph_bipartite(subg1):
-    return True
-  if not is_graph_bipartite(subg2):
-    return True
-
-  return False
-
 
 
 
@@ -169,8 +110,3 @@ if __name__ == "__main__":
   # b.print_spin_array()
   # board_stop_gears(b)
   # b.print_spin_array()
-
-  # b.array[3][0].place_gear(Gear(2))
-  # b.array[3][1].place_gear(Gear(2))
-  # b.print_board()
-  # print("is board illigal? = "+str(is_board_illigal(b)))

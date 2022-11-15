@@ -2,6 +2,8 @@
 # Vertices are the positions where the gears can be placed on
 # Edges are the possible gear connections between positions
 
+import random
+
 from gear import Gear
 from position import Position
 from graph import Graph
@@ -50,6 +52,46 @@ class Board:
           connections.add((self.array[y][x], self.array[y-1][x+1]))
 
     self.graph = Graph(vertices, connections)
+
+  def player_subgraph(self, player):
+    adj_dict = self.graph.adj_dict()
+    pos_list = list(adj_dict.keys())
+    gear_list = [i for i in pos_list if i.is_occupied() and i.occupied_by.type == player]
+
+    new_edges = []
+    for i in gear_list:
+      adj_vertices = adj_dict.get(i)
+      adj_gears = [i for i in adj_vertices if i.is_occupied() and i.occupied_by.type == player]
+      v_edges = [(i, t2) for t2 in adj_gears]
+      new_edges = new_edges + v_edges
+
+    return Graph(gear_list, new_edges)
+
+  def is_illigal(self):
+    subg1 = self.player_subgraph(1)
+    subg2 = self.player_subgraph(2)
+    bsize = self.size
+
+    p01 = self.array[0][1]
+    p10 = self.array[1][0]
+    p0s = self.array[0][bsize-2]
+    p1s = self.array[1][bsize-2]
+    ps0 = self.array[bsize-2][0]
+    ps1 = self.array[bsize-2][1]
+
+    if p01.is_occupied() and p10.is_occupied() and p01.occupied_by.type == p10.occupied_by.type: 
+      return True
+    if p0s.is_occupied() and p1s.is_occupied() and p0s.occupied_by.type == p1s.occupied_by.type: 
+      return True
+    if ps0.is_occupied() and ps1.is_occupied() and ps0.occupied_by.type == ps1.occupied_by.type: 
+      return True
+
+    if not subg1.is_bipartite():
+      return True
+    if not subg2.is_bipartite():
+      return True
+
+    return False
   
   def print_spin_array(self):
     spin_array = []
@@ -73,17 +115,27 @@ class Board:
     for y in range(len(self.array)):
       print(print_array[self.size - y -1])
 
-
+  def random_population(self):
+    poslist = list(self.graph.adj_dict().keys())
+    for pos in poslist:
+      if pos.is_occupied(): continue
+      num = random.randrange(0, 3)
+      if num == 0: continue
+      pos.place_gear(Gear(num))
+      
 
 
 if __name__ == "__main__":
-  b = Board(5)
+  # b = Board(5)
+  # b.array[0][1].place_gear(Gear(1))
+  # b.array[1][1].place_gear(Gear(1))
+  # b.array[1][2].place_gear(Gear(2))
 
-  pos21 = b.array[1][2]
-  pos11 = b.array[1][1]
-  pos11.place_gear(Gear(1))
-  
-  b.array[b.size-1][0].display()
-  pos21.display()
-  print("2, 1 neighbours")
-  for i in b.graph.nbrs(pos21): i.display()
+  # b.array[3][0].place_gear(Gear(2))
+  # b.array[3][1].place_gear(Gear(2))
+  # b.array[0][2].place_gear(Gear(1))
+  # b.print_board()
+  # print("is board illigal? = "+str(b.is_illigal()))
+
+  for i in range(10):
+    print(random.randrange(0, 3))
