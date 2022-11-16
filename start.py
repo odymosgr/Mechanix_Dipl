@@ -186,6 +186,28 @@ def make_a_move(board, player_to_play, move):
   board[move[3], move[4]] = player_to_play
 
 
+def adj_list_to_connective_components(adj_list):
+  gear_list = list(adj_list.keys())
+  visited = []
+  ccs = []
+
+  for gear in gear_list:
+    if gear in visited: continue
+    cc = [gear]
+    queue = [gear]
+
+    while queue:
+      s = queue.pop(0)
+
+      for neighbour in adj_list[s]:
+        if neighbour not in visited:
+          visited.append(neighbour)
+          queue.append(neighbour)
+          cc.append(neighbour)
+    ccs.append(cc)
+  return ccs
+
+
 ########
 # 'testing'
 
@@ -195,16 +217,21 @@ board[1, 1] = 2
 board[2, 1] = 2
 # board[0, 2] = 2
 # board[0, 1] = 2
+adj_list = board_to_adj_list(board)
 print(board)
 
-print(board_to_adj_list(board))
-rotations = turn_gear_clockwise(board, (0,0))
-print(rotations)
+# print(adj_list)
+# rotations = turn_gear_clockwise(board, (0,0))
+# print(rotations)
 
-move = get_move_from_user(1)
-if move_is_valid(board, 1, move): make_a_move(board, 1, move)
-else: print("invalid move!")
-print(board)
+cc = adj_list_to_connective_components(adj_list)
+print(cc)
+
+# move = get_move_from_user(1)
+# if move_is_valid(board, 1, move): make_a_move(board, 1, move)
+# else: print("invalid move!")
+# print(board)
+
 
 
 
