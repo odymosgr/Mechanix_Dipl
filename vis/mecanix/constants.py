@@ -1,4 +1,5 @@
 import pygame
+import os
 
 #Game
 WIDTH, HEIGHT = 1400, 1000
@@ -13,7 +14,7 @@ BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 
 #Images
-BLUEGEAR = pygame.image.load("assets/blue-gear-md.png")
-GREENGEAR = pygame.image.load("assets/imagination-movers-gears-md.png")
-TARGETGEAR = pygame.image.load("assets/green-gear.svg.med.png")
-TRANSPARENT = pygame.image.load("assets/block.png")
+BLUEGEAR = pygame.image.load(os.path.join('vis', 'assets', 'blue-gear-md.png'))
+GREENGEAR = pygame.image.load(os.path.join('vis', 'assets', 'imagination-movers-gears-md.png'))
+TARGETGEAR = pygame.image.load(os.path.join('vis', 'assets', 'green-gear.svg.med.png'))
+TRANSPARENT = pygame.image.load(os.path.join('vis', 'assets', 'block.png'))
